@@ -1,0 +1,45 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java
+  labels:
+    app: java
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: java
+  template:
+    metadata:
+      labels:
+        app: java
+    spec:
+      containers:
+      - name: java
+        image: shashi406/spring-boot
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      imagePullSecrets:
+       -name: java
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: java
+  labels:
+    app: java
+spec:
+  type: nodeport
+ ports:
+   -port: 8080
+    targetPort: 8080
+    nodePort: 30003
+  selector:
+    matchLabels:
+      app: java
