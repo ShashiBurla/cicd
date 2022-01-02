@@ -19,7 +19,7 @@ stage ('Build')
 {
     steps
     {
-       sh "cd /home/ubuntu/workspace/java-project/account-service ; mvn clean install " 
+       sh "cd /home/ubuntu/workspace/java-project/spring ; mvn clean install " 
     }
 }
 
@@ -28,16 +28,16 @@ stage ('dockerimageBuild')
     {
     steps
     {
-        sh "cd /home/ubuntu/workspace/java-project/account-service; sudo docker build -t account-service . " 
+        sh "cd /home/ubuntu/workspace/java-project/spring; sudo docker build -t spring . " 
     }
 }
      stage ('dockerimagepush ') 
 {
     steps
     {
-       sh "cd /home/ubuntu/workspace/java-project/account-service ; sudo  docker login -ushashi406 -pShashi@123 "
-        sh "cd /home/ubuntu/workspace/java-project/account-service ; sudo docker tag account-service shashi406/account-service "
-        sh "cd /home/ubuntu/workspace/java-project/account-service ; sudo docker push shashi406/account-service  "
+       sh "cd /home/ubuntu/workspace/java-project/spring ; sudo  docker login -ushashi406 -pShashi@123 "
+        sh "cd /home/ubuntu/workspace/java-project/spring ; sudo docker tag spring shashi406/spring "
+        sh "cd /home/ubuntu/workspace/java-project/spring ; sudo docker push shashi406/spring  "
         
         
     }
